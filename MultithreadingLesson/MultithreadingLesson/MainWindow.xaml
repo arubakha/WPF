@@ -1,0 +1,21 @@
+﻿<Window x:Class="MultithreadingLesson.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MultithreadingLesson.Business"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:BoolToModeConverter x:Key="BoolToModeConverter"/>
+    </Window.Resources>
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton Content="Long Call" Margin="5" IsChecked="{Binding Mode, Converter={StaticResource BoolToModeConverter}, ConverterParameter={x:Static local:Mode.LongCall}}"/>
+                <RadioButton Content="Delegate" Margin="5" IsChecked="{Binding Mode, Converter={StaticResource BoolToModeConverter}, ConverterParameter={x:Static local:Mode.Delegate}}"/>
+                <RadioButton Content="Thread" Margin="5" IsChecked="{Binding Mode, Converter={StaticResource BoolToModeConverter}, ConverterParameter={x:Static local:Mode.Thread}}"/>
+                <RadioButton Content="AutoResetEvent" Margin="5" IsChecked="{Binding Mode, Converter={StaticResource BoolToModeConverter}, ConverterParameter={x:Static local:Mode.AutoResetEvent}}"/>
+            </StackPanel>
+            <Button Content="Click Me" Width="75" Height="25" Command="{Binding ClickMeCommand}"/>
+            <TextBox Name="txtResult" Width="75" Height="25" Text="{Binding Result}"/>
+        </StackPanel>
+    </Grid>
+</Window>

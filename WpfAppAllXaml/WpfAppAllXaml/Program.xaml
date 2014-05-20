@@ -1,0 +1,16 @@
+﻿<Application x:Class="WpfAppAllXaml.Program"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="TestWindow.xaml"
+             Exit="OnExit">
+
+    <x:Code>
+        <![CDATA[
+        private void OnExit(object sender, ExitEventArgs e)
+        {
+            MessageBox.Show("Bye, bye...");
+        }
+        ]]>
+    </x:Code>
+
+</Application>

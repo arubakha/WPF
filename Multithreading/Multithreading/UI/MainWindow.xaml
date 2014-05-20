@@ -1,0 +1,18 @@
+﻿<Window x:Class="Multithreading.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.RowSpan="3" VerticalScrollBarVisibility="Auto">
+            <ItemsControl Background="Azure" ItemsSource="{Binding StatusList}"></ItemsControl>
+        </ScrollViewer>
+        <Button Grid.Row="1" Width="75" Height="25" Content="Button" Command="{Binding ButtonCommand}"/>
+        <TextBox Grid.Row="3" Width ="100" Height="25" Text="{Binding Status, Mode=OneWay}" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

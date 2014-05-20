@@ -1,0 +1,116 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:my="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
+    
+    <ControlTemplate x:Key="TopMenu" TargetType="Menu">
+        <Border Background="{TemplateBinding Control.Background}" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" Padding="{TemplateBinding Control.Padding}" SnapsToDevicePixels="True">
+            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ComboTemplate" TargetType="Menu">
+    <Grid Name="MainGrid" SnapsToDevicePixels="True">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0" />
+      </Grid.ColumnDefinitions>
+
+        <ToggleButton Background="{TemplateBinding Control.Background}" BorderBrush="{TemplateBinding Control.BorderBrush}" Grid.ColumnSpan="2">
+        <ToggleButton.Style>
+          <Style TargetType="ToggleButton">
+            <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True" />
+            <Setter Property="Control.IsTabStop" Value="False" />
+            <Setter Property="UIElement.Focusable" Value="False" />
+            <Setter Property="ButtonBase.ClickMode" Value="Press" />
+            <Setter Property="Control.Template">
+              <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                  <my:ButtonChrome Background="{TemplateBinding Control.Background}" BorderBrush="{TemplateBinding Control.BorderBrush}" Name="Chrome" RenderMouseOver="{TemplateBinding UIElement.IsMouseOver}" RenderPressed="{TemplateBinding ButtonBase.IsPressed}" SnapsToDevicePixels="True">
+                    <Grid HorizontalAlignment="Right" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                      <Path Data="M0,0L3.5,4 7,0z" Fill="Black" HorizontalAlignment="Center" Margin="3,1,0,0" Name="Arrow" VerticalAlignment="Center" />
+                    </Grid>
+                  </my:ButtonChrome>
+                  <ControlTemplate.Triggers>
+                    <Trigger Property="ToggleButton.IsChecked" Value="True">
+                      <Setter Property="my:ButtonChrome.RenderPressed" TargetName="Chrome" Value="True" />
+                    </Trigger>
+                    <Trigger Property="UIElement.IsEnabled" Value="False">
+                      <Setter Property="Shape.Fill" TargetName="Arrow" Value="#FFAFAFAF" />
+                    </Trigger>
+                  </ControlTemplate.Triggers>
+                </ControlTemplate>
+              </Setter.Value>
+            </Setter>
+          </Style>
+        </ToggleButton.Style>
+      </ToggleButton>
+
+        <ItemsPresenter HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" >
+            <ItemsPresenter.Style>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <ControlTemplate.Triggers>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ItemsPresenter.Style>
+        </ItemsPresenter>
+        <!--<ContentPresenter Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentStringFormat="{TemplateBinding ComboBox.SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" IsHitTestVisible="False" Margin="{TemplateBinding Control.Padding}" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />-->
+    </Grid>
+  </ControlTemplate>
+
+    <ControlTemplate x:Key="SubitemTemplate" TargetType="MenuItem">
+        <Grid SnapsToDevicePixels="True">
+            <Rectangle Fill="{TemplateBinding Control.Background}" Name="Bg" RadiusX="2" RadiusY="2" Stroke="{TemplateBinding Control.BorderBrush}" StrokeThickness="1" />
+            <Rectangle Margin="1" Name="InnerBorder" RadiusX="2" RadiusY="2" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="24" SharedSizeGroup="MenuItemIconColumnGroup" Width="Auto" />
+                    <ColumnDefinition Width="4" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="37" />
+                    <ColumnDefinition SharedSizeGroup="MenuItemIGTColumnGroup" Width="Auto" />
+                    <ColumnDefinition Width="17" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter Content="{TemplateBinding MenuItem.Icon}" ContentSource="Icon" Margin="1" Name="Icon" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" VerticalAlignment="Center" />
+                <Border Background="#FFE6EFF4" BorderBrush="#FFCDD3E6" BorderThickness="1" CornerRadius="3" Height="22" Margin="1" Name="GlyphPanel" Visibility="Hidden" Width="22">
+                    <Path Data="M0,5.1L1.7,5.2 3.4,7.1 8,0.4 9.2,0 3.3,10.8z" Fill="#FF0C12A1" FlowDirection="LeftToRight" Height="11" Name="Glyph" Width="9" />
+                </Border>
+                <ContentPresenter Content="{TemplateBinding HeaderedItemsControl.Header}" ContentSource="Header" ContentStringFormat="{TemplateBinding HeaderedItemsControl.HeaderStringFormat}" ContentTemplate="{TemplateBinding HeaderedItemsControl.HeaderTemplate}" Grid.Column="2" Margin="{TemplateBinding Control.Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                <TextBlock Grid.Column="4" Margin="{TemplateBinding Control.Padding}" Text="{TemplateBinding MenuItem.InputGestureText}" />
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="MenuItem.Icon" Value="{x:Null}">
+                <Setter Property="UIElement.Visibility" TargetName="Icon" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="MenuItem.IsChecked" Value="True">
+                <Setter Property="UIElement.Visibility" TargetName="GlyphPanel" Value="Visible" />
+                <Setter Property="UIElement.Visibility" TargetName="Icon" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="MenuItem.IsHighlighted" Value="True">
+                <Setter Property="Shape.Fill" TargetName="Bg">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#34C5EBFF" Offset="0" />
+                            <GradientStop Color="#3481D8FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Shape.Stroke" TargetName="Bg" Value="#8071CBF1" />
+                <Setter Property="Shape.Stroke" TargetName="InnerBorder" Value="#40FFFFFF" />
+            </Trigger>
+            <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter Property="Control.Foreground" Value="#FF9A9A9A" />
+                <Setter Property="Border.Background" TargetName="GlyphPanel" Value="#FFEEE9E9" />
+                <Setter Property="Border.BorderBrush" TargetName="GlyphPanel" Value="#FFDBD6D6" />
+                <Setter Property="Shape.Fill" TargetName="Glyph" Value="#FF848589" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+</ResourceDictionary>

@@ -1,0 +1,30 @@
+﻿<Window x:Class="ItemsControlLesson.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MenuResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <Menu Margin="5" Width="75" Height="25" Template="{StaticResource TopMenu}" VerticalContentAlignment="Center">
+            <MenuItem Header="Destinations" >
+                <MenuItem Header="BAML">
+                    <MenuItem Header="ALGO"/>
+                    <MenuItem Header="PT"/>
+                    <MenuItem Header="DMA"/>
+                </MenuItem>
+                <MenuItem Header="MLCO">
+                    <MenuItem Header="ALGO"/>
+                    <MenuItem Header="PT"/>
+                    <MenuItem Header="DMA"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ComboBox Margin="5" Width="75" Height="25"></ComboBox>
+    </StackPanel>
+</Window>
